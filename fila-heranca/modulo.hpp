@@ -23,10 +23,9 @@ public:
     void print();
     bool pushFront(Data data);
     bool pushBack(Data data);
-    Data popFront();
-    Data popBack();
+    bool popFront();
+    bool popBack();
     bool search(Data data);
-    Data at(int pos);
 };
 
 class Queue

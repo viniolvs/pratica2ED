@@ -10,7 +10,15 @@ List::List(){
 }
 
 List::~List(){
-
+    if(empty())
+        return;
+    Node *aux = this->first, *p;
+    while (aux != nullptr)
+    {
+        p = aux;
+        aux = aux->next;
+        delete[] p;
+    }
 }
 
 int List::len(){
@@ -22,6 +30,8 @@ bool List::empty(){
 }
 
 void List::print(){
+    if(this->empty())
+        return;
     Node *aux = first;
     for (int i = 0; i < len(); i++, aux = aux->next)
         cout << aux->info << " ";
@@ -30,6 +40,8 @@ void List::print(){
 
 bool List::pushFront(Data data){
     Node *node = new Node;
+    if(node==nullptr)
+        return false;
     node->info = data;
     node->next = nullptr;
 
@@ -47,6 +59,8 @@ bool List::pushFront(Data data){
 
 bool List::pushBack(Data data){
     Node *node = new Node;
+    if(node==nullptr)
+        return false;
     node->info = data;
     node->next = nullptr;
 
@@ -62,10 +76,37 @@ bool List::pushBack(Data data){
     return true;
 }
 
-Data List::popFront(){
-    
+bool List::popFront(){
+    if(empty())
+        return false;
+    Node *aux = this->first;
+    this->first = aux->next;
+    this->length--;
+    delete[] aux;
+    return true;
 }
 
-Data List::popBack(){
+bool List::popBack(){
+    if(empty())
+        return false;
+    Node *aux = this->first;
+    for(int i = 0 ; i < this->len() - 1 ; i++)
+        aux = aux->next;
+    this->last = aux;
+    this->last->next = nullptr;
+    this->length--;
+    delete[] aux->next;
+    return true;
+}
 
+bool List::search(Data data){
+    if(empty())
+        return false;
+    Node *aux = this->first;
+    for(int i ; i < this->len() ; i++){
+        if(aux->info == data)
+            return true;
+        aux = aux->next;
+    }
+    return false;
 }
