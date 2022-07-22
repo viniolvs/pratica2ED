@@ -3,17 +3,19 @@
 
 int main(int argc, char const *argv[])
 {
+    Queue queue;
     List list;
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 5; i++)
     {
-        list.pushBack(i);
+        list.pushFront(i);
+        queue.insert(i);
     }
-    list.print();
-    for (int i = 0; i < 10; i++)
-    {
-        list.popFront();
-        list.print();
-    }
-    cout << list.search(10) << endl;
+    queue.printQueue();
+    cout << "Tamanho da fila = " << queue.size() << endl;
+    cout << "Primeiro da fila = " << queue.getFirst() << endl;
+    cout << "Ultimo da fila = " << queue.getLast() << endl;
+    queue.remove();
+    queue.printQueue();
+
     return 0;
 }

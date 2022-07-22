@@ -1,4 +1,3 @@
-
 using namespace std;
 
 typedef int Data;
@@ -26,13 +25,21 @@ public:
     bool popFront();
     bool popBack();
     bool search(Data data);
+    Data at(int pos);
 };
 
-class Queue
+class Queue : protected List
 {
 private:
-    /* data */
+
 public:
-    Queue(/* args */);
+    Queue();
     ~Queue();
+    int size();
+    bool insert(Data data);
+    bool remove();
+    bool emptyQueue();
+    void printQueue();
+    Data getFirst();
+    Data getLast();
 };
