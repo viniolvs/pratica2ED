@@ -6,8 +6,10 @@
 
 int main(int argc, char const *argv[])
 {
-    if (argc < 2)
+    if (argc < 2){
+        printf("Formato: ./main.o <tamanho do vetor> p\n");
         exit(EXIT_FAILURE);
+    }
     int len = atoi(argv[1]);
 
     int *Vi = newVector(len);

@@ -51,7 +51,7 @@ void insertionSort(int *V, int len){
 }
 
 void shellSort(int *V, int len){
-    int i, j, h, aux;
+    int i, h, aux;
     for (h = (len/2); h > 1 ; h/=2)
     {
         for (i = 0 ; i + h < len ; i++)
