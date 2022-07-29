@@ -149,15 +149,27 @@ void initGraph(Graph *G){
 }
 
 // insere um vértice no grafo
-void insertVertex(Graph *G, int v){
-	if(v < MAX_VERTICES){
-		initList(&G->array[v]);
-		G->num_vertices++;
+void insertVertex(Graph *G){
+	if(G->num_vertices+1 == MAX_VERTICES){
+		printf("Número máximo de vértices atingido\n!");
+		return;	
 	}
+	initList(&G->array[G->num_vertices]);
+	G->num_vertices++;
 }
 
 // insere uma aresta no grafo do vertice v1 para o vertice v2
 void insertAresta(Graph *G, int v1, int v2, int weight){
+	if(v1 >= G->num_vertices){
+		printf("Erro ao inserir aresta: ");
+		printf("Vertice origem da aresta não existe\n");
+		return;
+	}
+	else if (v2 >= G->num_vertices){
+		printf("Erro ao inserir aresta: ");
+		printf("Vertice destino da aresta não existe\n");
+		return;
+	}
 	Data *item = (Data*)malloc(sizeof(Data));
 	item->vertex = v2;
 	item->weight = weight;

@@ -44,10 +44,11 @@ void removeFirst(List *L);
 void removeLast(List *L);
 
 // ==========================================================
+
 void printGraph(Graph *G);
 
 void initGraph(Graph *G);
 
-void insertVertex(Graph *G, int v);
+void insertVertex(Graph *G);
 
 void insertAresta(Graph *G ,int v1, int v2, int weight);
