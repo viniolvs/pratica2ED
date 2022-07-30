@@ -6,6 +6,6 @@ main.o : main.c modulo.h
 modulo.o : modulo.c modulo.h
 	gcc -c modulo.c
 clean :
-	rm exec main.o modulo.o
+	rm main.o modulo.o
 run : 
-	./exec > saida.txt
+	make; ./exec > ../saida_shellsort.txt; make clean

@@ -6,6 +6,6 @@ main.o : main.cpp modulo.hpp
 modulo.o : modulo.cpp modulo.hpp
 	g++ -c modulo.cpp
 clean :
-	rm exec main.o modulo.o
+	rm main.o modulo.o
 run : 
-	./exec > saida.txt
+	make; ./exec > ../saida_fila.txt; make clean
