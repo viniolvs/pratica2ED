@@ -1,3 +1,6 @@
+#ifndef MODULO_H
+#define MODULO_H
+
 #include <stdbool.h>
 
 // Aloca um vetor de tamanho len
@@ -19,3 +22,5 @@ void insertionSort(int *V, int len);
 
 // Ordena um vetor utilizando shell sort
 void shellSort(int *V, int len);
+
+#endif
