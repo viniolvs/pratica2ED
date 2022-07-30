@@ -1,18 +1,20 @@
-#define MAX_VERTICES 100
 #include <stdbool.h>
 
+// Estrutura que cada nó armazena
 typedef struct Data
 {
     int vertex; //número do vértice
     int weight; //peso do vértice
 }Data;
 
+// Estrutura do nó da lista encadeada
 typedef struct Node
 {
     Data item; // dado armazenado no nó
 	struct Node *next;	// ponteiro para o próximo nó
 }Node;
 
+// Estrutura da lista encadeada
 typedef struct List
 {
     Node *first;
@@ -20,12 +22,7 @@ typedef struct List
     int length;
 }List;
 
-typedef struct Graph
-{
-    List *array; // vetor de Listas
-    int num_vertices; // tamanho do array de listas
-    int num_arestas;
-}Graph;
+// Métodos utilizados para a lista encadeada
 
 void initList(List *L);
 
@@ -43,7 +40,22 @@ void removeFirst(List *L);
 
 void removeLast(List *L);
 
-// ==========================================================
+// ======================= GRAFO ===================================
+
+// Define o máximo de vértices que o grafo pode conter
+#define MAX_VERTICES 100
+// Define o máximo de arestas que o grafo pode conter
+#define MAX_ARESTAS -1
+
+// Estrutura do grafo
+typedef struct Graph
+{
+    List *array; // array de listas encadeads
+    int num_vertices; // numero de vértices no grafo
+    int num_arestas;  // numero de arestas no grafo
+}Graph;
+
+// Métodos utilizados para o grafo
 
 void printGraph(Graph *G);
 

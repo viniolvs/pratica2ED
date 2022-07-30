@@ -1,19 +1,21 @@
 #include <stdbool.h>
 
-// aloca um vetor
+// Aloca um vetor de tamanho len
 int* newVector(int len);
 
-// preenche um vetor com valores aleatórios
+// Preenche um vetor com valores aleatórios
+// seed é utilizado para gerar aleatoriedade entre as execuções
 void fillVector(int *V, int len, bool seed);
 
 // copia o vetor V1 para o vetor V2
+// V2 não pode ser menor do que V1
 void copyVector(int *V1, int *V2, int len);
 
-// printa um vetor
+// Printa um vetor de tamanho len
 void printVector(int *V, int len);
 
-// ordena um vetor utilizando insertion sort
+// Ordena um vetor utilizando insertion sort
 void insertionSort(int *V, int len);
 
-// ordena um vetor utilizando shell sort
+// Ordena um vetor utilizando shell sort
 void shellSort(int *V, int len);
