@@ -3,9 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// FUNCOES PARA LISTA ENCADEADA
+// MÉTODOS PARA LISTA ENCADEADA
 
-// Inicialização da lista
 void initList(List *L)
 {
 	L->first = NULL;
@@ -14,8 +13,7 @@ void initList(List *L)
 	return;
 }
 
-// destruição da lista
-void deleteList(List *L)
+void freeList(List *L)
 {
 	Node *p = L->first;
 	while (p)
@@ -28,13 +26,11 @@ void deleteList(List *L)
 	L->last = NULL;
 }
 
-// verifica lista vazia
 bool emptyList(List L)
 {
 	return (L.length == 0);
 }
 
-// escreve a lista;
 void printList(List L)
 {
 	Node *p = L.first;
@@ -50,8 +46,7 @@ void printList(List L)
 	printf("]");
 }
 
-// inserção pela esquerda
-short insertLeft(Data x, List *L)
+short insertLeft(List *L, Data x)
 {
 	Node *aux;
 	aux = (Node*)malloc(sizeof(Node));
@@ -69,8 +64,7 @@ short insertLeft(Data x, List *L)
 	}
 }
 
-// Inserção pela direita
-short insertRight(Data x, List *L)
+short insertRight(List *L, Data x)
 {
 	Node *aux = (Node*)malloc(sizeof(Node));
 	if (aux ==NULL)
@@ -92,7 +86,6 @@ short insertRight(Data x, List *L)
 	}
 }
 
-// remoção pela esquerda
 void removeFirst(List *L)
 {
 	Node *aux = L->first;	
@@ -103,7 +96,6 @@ void removeFirst(List *L)
 	L->length--;						
 }
 
-// remoção pela direita
 void removeLast(List *L)
 {
 	Node *aux = L->first;
@@ -124,9 +116,33 @@ void removeLast(List *L)
 	L->length--;
 }
 
+void removeAt(List *L, int pos){
+	if(pos >= L->length){
+		printf("Invalid position\n");
+		return;
+	}
+	if(pos == 0){
+		removeFirst(L);
+		return;
+	}
+	if(pos == L->length-1){
+		removeLast(L);
+		return;
+	}
+	Node *aux = L->first->next;
+	Node *aux_prev = L->first;
+	int i;
+	for(i = 1 ; i < pos ; i++){
+		aux = aux->next;
+		aux_prev = aux_prev->next;
+	}
+	aux_prev->next = aux->next;
+	free(aux);
+}
+
 // ===========================================================================
 
-// FUNCOES PARA GRAFO
+// MÉTODOS PARA GRAFO
 
 void printGraph(Graph *G){
 	int i;
@@ -141,14 +157,19 @@ void printGraph(Graph *G){
 	}
 }
 
-// inicializa um grafo
 void initGraph(Graph *G){
 	G->num_arestas = 0;
 	G->num_vertices = 0;
 	G->array = (List*)malloc(sizeof(List)*MAX_VERTICES);
 }
 
-// insere um vértice no grafo
+void freeGraph(Graph *G){
+	int i;
+	for (i = 0; i < G->num_vertices; i++)
+		freeList(&G->array[i]);
+	free(G->array);
+}
+
 void insertVertex(Graph *G){
 	if(G->num_vertices+1 == MAX_VERTICES){
 		printf("Número máximo de vértices atingido\n!");
@@ -158,7 +179,6 @@ void insertVertex(Graph *G){
 	G->num_vertices++;
 }
 
-// insere uma aresta no grafo do vertice v1 para o vertice v2
 void insertAresta(Graph *G, int v1, int v2, int weight){
 	if(v1 >= G->num_vertices){
 		printf("Erro ao inserir aresta: ");
@@ -173,6 +193,32 @@ void insertAresta(Graph *G, int v1, int v2, int weight){
 	Data *item = (Data*)malloc(sizeof(Data));
 	item->vertex = v2;
 	item->weight = weight;
-	insertRight(*item, &G->array[v1]);
+	insertRight(&G->array[v1], *item);
 	G->num_arestas++;
+}
+
+bool removeAresta(Graph *G, int v1, int v2){
+	Node *aux = G->array[v1].first;
+	bool flag = false;
+	int i;
+	for ( i = 0; (aux!=NULL) && (flag == false); i++){
+		if(v2 == aux->item.vertex){
+			flag = true;
+			G->num_arestas--;
+			removeAt(&G->array[v1], i);
+		}
+	}
+	return flag;
+}
+
+bool existsAresta(Graph *G, int v1, int v2){
+	bool flag = false;
+	Node *aux = G->array[v1].first;
+	while ((aux != NULL) && (flag == false))
+	{
+		if(v2 == aux->item.vertex)
+			flag = true;
+		aux = aux->next;	
+	}
+	return flag;
 }
