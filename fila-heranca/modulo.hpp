@@ -1,3 +1,6 @@
+#ifndef MODULO_HPP
+#define MODULO_HPP
+
 using namespace std;
 
 // Tipo armazenado na estrutura de dados
@@ -65,3 +68,5 @@ public:
     // Retorna o último elemento da fila
     Data getLast();
 };
+
+#endif
