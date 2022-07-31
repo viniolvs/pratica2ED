@@ -1,5 +1,5 @@
 run :
-	make run -C fila-heranca/
+	make run -C fila/
 	make run -C grafo/
 	make run -C shellsort/
 
