@@ -47,6 +47,8 @@ int main(int argc, char const *argv[])
     printf("Tempo para ordenar utilizando shell sort = %6.6lf\n", time_shell);
 
     printf("Shell sort utilizou %c%.2lf do tempo que insertion sort utilizou!\n", '%', (time_shell/time_insertion)*100);
+    freeVector(Vi);
+    freeVector(Vs);
     return 0;
 }
 
