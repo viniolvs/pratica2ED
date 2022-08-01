@@ -168,6 +168,9 @@ void freeGraph(Graph *G){
 	for (i = 0; i < G->num_vertices; i++)
 		freeList(&G->array[i]);
 	free(G->array);
+	G->num_arestas = 0;
+	G->num_vertices = 0;
+	G = NULL;
 }
 
 void insertVertex(Graph *G){
@@ -207,6 +210,7 @@ bool removeAresta(Graph *G, int v1, int v2){
 			G->num_arestas--;
 			removeAt(&G->array[v1], i);
 		}
+		aux = aux->next;
 	}
 	return flag;
 }
