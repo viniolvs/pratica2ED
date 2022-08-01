@@ -11,6 +11,12 @@ int* newVector(int len)
    return V;
 }
 
+void freeVector(int *V)
+{
+    if (V != NULL)
+        free(V);
+}
+
 void fillVector(int *V, int len, bool seed)
 {
     int i;
@@ -62,6 +68,7 @@ void shellSort(int *V, int len){
                 V[h+i] = aux;
             }
         }
-    }
+    }  
+    // h == 1 corresponde ao insertion sort 
     insertionSort(V, len);
 }

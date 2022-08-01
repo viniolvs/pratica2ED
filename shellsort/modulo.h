@@ -6,6 +6,9 @@
 // Aloca um vetor de tamanho len
 int* newVector(int len);
 
+//Destrói um vetor
+void freeVector(int *V);
+
 // Preenche um vetor com valores aleatórios
 // seed é utilizado para gerar aleatoriedade entre as execuções
 void fillVector(int *V, int len, bool seed);
