@@ -1,11 +1,13 @@
-exec : main.o modulo.o
-	g++ -o exec main.o modulo.o
+exec : main.o queue.o list.o
+	g++ -o exec main.o queue.o list.o
 
-main.o : main.cpp modulo.hpp
+main.o : main.cpp queue.hpp
 	g++ -c main.cpp
-modulo.o : modulo.cpp modulo.hpp
-	g++ -c modulo.cpp
+list.o : list.cpp list.hpp
+	g++ -c list.cpp
+queue.o : queue.cpp queue.hpp
+	g++ -c queue.cpp
 clean :
-	rm main.o modulo.o
+	rm *.o
 run : 
 	make; ./exec > ../saida_fila.txt; make clean
