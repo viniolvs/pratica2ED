@@ -1,11 +1,15 @@
-exec : main.o modulo.o
-	gcc -o exec main.o modulo.o
+exec : main.o graph.o list.o data.o
+	gcc -o exec main.o graph.o list.o data.o
 
-main.o : main.c modulo.h
+main.o : main.c graph.h list.h data.h
 	gcc -c main.c
-modulo.o : modulo.c modulo.h
-	gcc -c modulo.c
+list.o : list.c list.h data.h
+	gcc -c list.c
+graph.o : graph.c graph.h data.h
+	gcc -c graph.c
+data.o : data.c data.h 
+	gcc -c data.c
 clean :
-	rm main.o modulo.o
+	rm *.o
 run : 
-	make; ./exec > ../saida_grafo.txt; make clean
+	make; ./exec > ../saida_fila.txt; make clean

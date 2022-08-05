@@ -1,4 +1,6 @@
-#include "modulo.h"
+#include "graph.h"
+#include "list.h"
+#include "data.h"
 #include <stdio.h>
 #include <stdlib.h>
 
