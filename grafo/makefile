@@ -12,4 +12,4 @@ data.o : data.c data.h
 clean :
 	rm *.o
 run : 
-	make; ./exec > ../saida_fila.txt; make clean
+	make; ./exec > ../saida_grafo.txt; make clean
